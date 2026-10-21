@@ -1,0 +1,14 @@
+<%- include("partials/header", { pageTitle: post.title }) %>
+<article class="single-post">
+  <a class="back-link" href="/">← All notes</a>
+  <p class="eyebrow"><%= formatDate(post.createdAt) %></p>
+  <h1><%= post.title %></h1>
+  <div class="post-body"><%= post.body %></div>
+  <div class="post-actions">
+    <a class="button button-secondary" href="/posts/<%= post.id %>/edit">Edit post</a>
+    <form action="/posts/<%= post.id %>/delete" method="POST" onsubmit="return confirm('Delete this post?');">
+      <button class="text-button" type="submit">Delete post</button>
+    </form>
+  </div>
+</article>
+<%- include("partials/footer") %>

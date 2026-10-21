@@ -1,0 +1,15 @@
+<%- include("partials/header", { pageTitle }) %>
+<section class="editor">
+  <a class="back-link" href="/">← All notes</a>
+  <p class="eyebrow"><%= post ? "Refine your thought" : "A fresh page" %></p>
+  <h1><%= pageTitle %></h1>
+  <% if (typeof error !== "undefined") { %><p class="form-error" role="alert"><%= error %></p><% } %>
+  <form action="<%= formAction %>" method="POST">
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" value="<%= post?.title || "" %>" placeholder="Give your note a title" maxlength="120" required autofocus />
+    <label for="body">Your note</label>
+    <textarea id="body" name="body" rows="12" placeholder="Start writing…" required><%= post?.body || "" %></textarea>
+    <div class="form-actions"><a href="/" class="cancel-link">Cancel</a><button class="button" type="submit"><%= submitLabel %></button></div>
+  </form>
+</section>
+<%- include("partials/footer") %>

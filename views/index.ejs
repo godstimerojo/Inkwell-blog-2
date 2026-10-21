@@ -1,0 +1,29 @@
+<%- include("partials/header", { pageTitle: "Notes" }) %>
+<section class="intro">
+  <p class="eyebrow">Personal notes &amp; observations</p>
+  <h1>Ideas, in their<br /><em>own good time.</em></h1>
+  <p class="intro-copy">A small collection of things I want to remember, understand, or share.</p>
+</section>
+
+<section class="post-list" aria-label="Blog posts">
+  <% if (posts.length) { %>
+    <% posts.forEach((post, index) => { %>
+      <article class="post-preview">
+        <span class="post-number">0<%= posts.length - index %></span>
+        <div>
+          <p class="post-date"><%= formatDate(post.createdAt) %></p>
+          <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+          <p class="post-excerpt"><%= post.body.length > 190 ? post.body.slice(0, 190) + "…" : post.body %></p>
+          <a class="read-link" href="/posts/<%= post.id %>">Read note <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    <% }) %>
+  <% } else { %>
+    <div class="empty-state">
+      <p class="eyebrow">A blank page</p>
+      <h2>Your first note is waiting.</h2>
+      <a class="button" href="/posts/new">Write something</a>
+    </div>
+  <% } %>
+</section>
+<%- include("partials/footer") %>
